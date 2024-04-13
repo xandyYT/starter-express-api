@@ -16,7 +16,7 @@ const esperar = async (tempo) => {
 
 router.get('/attp', async (req, res, next) => {
        text = req.query.texto   
-   hasil = 'https://xandy-api.cyclic.app/attp?text=' + text
+   hasil = 'https://xandy-api.cyclic.app/attp?texto=' + text
 	  data = await fetch(hasil).then(v => v.buffer())   
          await fs.writeFileSync(__dirname+'/attp1.webp',data)
         res.sendFile(__dirname+'/attp1.webp')
