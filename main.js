@@ -8,10 +8,20 @@ const axios = require('axios')
 const cheerio = require('cheerio')
 const g = require('assemblyai')
 const ka = './registros.json'
+const fetch = require('node-fetch')
 
 const esperar = async (tempo) => {
     return new Promise(funcao => setTimeout(funcao, tempo));
 }
+
+router.get('/attp', async (req, res, next) => {
+       text = req.query.texto   
+   hasil = 'https://supra-api.herokuapp.com/api/attp1?text=' + text
+	  data = await fetch(hasil).then(v => v.buffer())   
+         await fs.writeFileSync(__path +'/attp1.webp',data)
+        res.sendFile(__path+'/attp1.webp')
+})
+
 router.get('/meufilme', async (req, res)=>{
   res.sendFile(__dirname + '/views/ITACOS.mp4')
 })
