@@ -235,7 +235,7 @@ router.get('/playvid', async (req, res, next) => {
 ytPlayMp4(quero)
 })
 router.get(`/`, async(req, res) => {
-res.sendFile(__dirname + '/views/login.html')
+res.sendFile(__dirname + '/login.html')
 })
 router.get('/fazfigu', async (req, res)=>{
   if(fs.existsSync('./tmp/imagem.webp')){
