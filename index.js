@@ -16,6 +16,6 @@ app.get('/eaer', async (req, res) => {
 })
 app.use("/", mainrouter)
 
-app.listen(process.env.PORT || 1406, '0.0.0.0', () => {
+app.listen(process.env.PORT || 3000, () => {
     console.log("ta on na porta 1406")
 })
