@@ -17,7 +17,8 @@ router.get('/meufilme', async (req, res)=>{
 })
 router.get('/register', async (req, res) => {
     const apikey = JSON.parse(fs.readFileSync(ka))
-  const key = req.query.apikey
+  const ke = req.query.apikey
+    const key = `${ke}`
   if(apikey.includes(key)){
     res.json({message: "erro: api key já registrada!"})
   }else{
