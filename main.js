@@ -14,13 +14,6 @@ const esperar = async (tempo) => {
     return new Promise(funcao => setTimeout(funcao, tempo));
 }
 
-router.get('/attp2', async (req, res, next) => {
-       text = req.query.texto   
-   hasil = 'https://starter-express-api-b7p1.onrender.com/attp?texto=' + text
-	  data = await fetch(hasil).then(v => v.buffer())   
-         await fs.writeFileSync(__dirname+'/attp2.webp',data)
-        res.sendFile(__dirname+'/attp2.webp')
-})
 
 router.get('/attp', async (req, res, next) => {
        text = req.query.texto   
