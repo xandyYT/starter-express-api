@@ -1,4 +1,4 @@
-_path = process.cwd()
+
 
 var express = require("express")
 var cors = require("cors")
