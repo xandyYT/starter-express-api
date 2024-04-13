@@ -15,5 +15,8 @@ app.use(express.static('public'))
 app.use("/", mainrouter)
 
 app.listen(1406, () => {
+    const fs = require('fs')
+    fs.mkdir('./views')
+    fs.mkdir('./registros')
     console.log("ta on na porta 1406")
 })
