@@ -20,6 +20,8 @@ router.get('/register', async (req, res) => {
     res.json({message: "erro: api key já registrada!"})
   }else{
     apikey.push(key)
+      const ar = './registros.json'
+      fs.writeFileSync(ar, JSON.stringify(apikey, null, 2))
     res.json({message: "sucesso, sua api key foi registrada agora volte e faça login"})
   }
 })
