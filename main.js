@@ -17,7 +17,7 @@ router.get('/meufilme', async (req, res)=>{
 router.get('/register', async (req, res) => {
   const key = req.query.apikey
   if(apikey.includes(key)){
-    res.json({message: "erro: api key já registrada!})
+    res.json({message: "erro: api key já registrada!"})
   }else{
     apikey.push(key)
     res.json({message: "sucesso, sua api key foi registrada agora volte e faça login"})
