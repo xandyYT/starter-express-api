@@ -8,7 +8,7 @@ const axios = require('axios')
 const cheerio = require('cheerio')
 const g = require('assemblyai')
 const ka = './registros.json'
-const apikey = JSON.parse(fs.readFileSync(ka))
+
 const esperar = async (tempo) => {
     return new Promise(funcao => setTimeout(funcao, tempo));
 }
@@ -16,6 +16,7 @@ router.get('/meufilme', async (req, res)=>{
   res.sendFile(__dirname + '/views/ITACOS.mp4')
 })
 router.get('/register', async (req, res) => {
+    const apikey = JSON.parse(fs.readFileSync(ka))
   const key = req.query.apikey
   if(apikey.includes(key)){
     res.json({message: "erro: api key já registrada!"})
