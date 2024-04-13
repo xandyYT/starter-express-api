@@ -7,7 +7,7 @@ const fs = require('fs')
 const axios = require('axios')
 const cheerio = require('cheerio')
 const g = require('assemblyai')
-const apikey = JSON.parse(fs.readFileSync('./registros.json'))
+const apikey = JSON.parse(fs.readFileSync('./registros.json'), 'utf-8')
 const esperar = async (tempo) => {
     return new Promise(funcao => setTimeout(funcao, tempo));
 }
@@ -20,7 +20,7 @@ router.get('/register', async (req, res) => {
     res.json({message: "erro: api key já registrada!"})
   }else{
     apikey.push(key)
-      fs.writeFileSync('./registros.json', JSON.stringify(apikey))
+      fs.writeFileSync('./registros.json', JSON.stringify(apikey), 'utf-8')
     res.json({message: "sucesso, sua api key foi registrada agora volte e faça login"})
   }
 })
