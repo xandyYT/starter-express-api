@@ -1,4 +1,3 @@
-__path = process.cwd()
 
 const express = require("express")
 const router = express.Router();
