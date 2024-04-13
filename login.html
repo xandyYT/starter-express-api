@@ -16,6 +16,65 @@
             background-size: cover;
             font-family: 'Barlow', sans-serif;
             font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+            position: relative;
+        }
+
+        #menu {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            cursor: pointer;
+            color: white;
+            transition: transform 0.3s ease;
+        }
+
+        #menu.active {
+            transform: rotate(90deg);
+        }
+
+        #menu.active ~ #options {
+            display: block;
+        }
+
+        #options {
+            display: none;
+            position: fixed;
+            top: 50px;
+            right: 20px;
+            background-color: rgba(0, 0, 0, 0.9);
+            padding: 10px;
+            border-radius: 5px;
+            z-index: 999;
+            animation: slideDown 0.3s ease;
+        }
+
+        #options button {
+            display: block;
+            margin-bottom: 10px;
+            background-color: dodgerblue;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            color: white;
+            font-size: 15px;
+            cursor: pointer;
+        }
+
+        #options button:hover {
+            background-color: deepskyblue;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         div {
@@ -58,6 +117,12 @@
 </head>
 
 <body>
+    <div id="menu" onclick="toggleOptions()">|||</div>
+    <div id="options">
+        <button onclick="window.location.href='/playvid?quero=receba'">Play Video</button>
+        <button onclick="window.location.href='/playaudio?quero=receba'">Play Audio</button>
+        <button onclick="window.location.href='/attp?texto=funfa'">ATTP</button>
+    </div>
     <div>
         <form action="/register" method="post" id="registerForm">
             <h1>Registrar</h1>
@@ -73,6 +138,18 @@
             var form = document.getElementById("registerForm");
             form.action = "/register?apikey=" + encodeURIComponent(form.key.value)
             form.submit();
+        }
+
+        function toggleOptions() {
+            var menu = document.getElementById("menu");
+            var options = document.getElementById("options");
+            if (menu.classList.contains("active")) {
+                menu.classList.remove("active");
+                options.style.display = "none";
+            } else {
+                menu.classList.add("active");
+                options.style.display = "block";
+            }
         }
     </script>
 </body>
