@@ -7,11 +7,22 @@ const fs = require('fs')
 const axios = require('axios')
 const cheerio = require('cheerio')
 const g = require('assemblyai')
-
+const apikey = JSON.parse(fs.readFileSync('./registros.json'))
+const esperar = async (tempo) => {
+    return new Promise(funcao => setTimeout(funcao, tempo));
+}
 router.get('/meufilme', async (req, res)=>{
   res.sendFile(__dirname + '/views/ITACOS.mp4')
 })
-
+router.get('/register', async (req, res) => {
+  const key = req.query.apikey
+  if(apikey.includes(key)){
+    res.json({message: "erro: api key já registrada!})
+  }else{
+    apikey.push(key)
+    res.json({message: "sucesso, sua api key foi registrada agora volte e faça login"})
+  }
+})
 router.get('/youtube', async (req, res)=>{
   const quero = req.query.q
   return new Promise(async (resolve, reject) => {
