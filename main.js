@@ -1,4 +1,4 @@
-
+__path = process.cwd()
 const express = require("express")
 const router = express.Router();
 const ytSearch = require('yt-search');
