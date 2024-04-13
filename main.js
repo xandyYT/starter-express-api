@@ -7,9 +7,9 @@ const fs = require('fs')
 const axios = require('axios')
 const cheerio = require('cheerio')
 const g = require('assemblyai')
-const ka = './registros.json'
+const ka = __dirname + '/registros.json'
 const fetch = require('node-fetch')
-
+    const apikey = JSON.parse(fs.readFileSync(ka))
 const esperar = async (tempo) => {
     return new Promise(funcao => setTimeout(funcao, tempo));
 }
@@ -26,7 +26,7 @@ router.get('/meufilme', async (req, res)=>{
   res.sendFile(__dirname + '/views/ITACOS.mp4')
 })
 router.get('/register', async (req, res) => {
-    const apikey = JSON.parse(fs.readFileSync(ka))
+
   const ke = req.query.apikey
     const key = `${ke}`
   if(apikey.includes(key)){
