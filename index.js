@@ -14,6 +14,6 @@ app.use(express.static('public'))
 
 app.use("/", mainrouter)
 
-app.listen(process.env.PORT || 1406, () => {
+app.listen(process.env.PORT || 1406, '0.0.0.0', () => {
     console.log("ta on na porta 1406")
 })
