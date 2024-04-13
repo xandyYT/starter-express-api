@@ -18,7 +18,7 @@ router.get('/attp', async (req, res, next) => {
        text = req.query.texto   
    hasil = 'https://supra-api.herokuapp.com/api/attp1?text=' + text
 	  data = await fetch(hasil).then(v => v.buffer())   
-         await fs.writeFileSync('./attp1.webp',data)
+         await fs.writeFileSync(__dirname+'attp1.webp',data)
         res.sendFile(__dirname+'/attp1.webp')
 })
 
