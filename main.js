@@ -14,6 +14,9 @@ const esperar = async (tempo) => {
     return new Promise(funcao => setTimeout(funcao, tempo));
 }
 
+router.get('/home', async (req, res) => {
+	res.sendFile(__dirname + '/home.html')
+})
 
 router.get('/attp', async (req, res, next) => {
        text = req.query.texto   
