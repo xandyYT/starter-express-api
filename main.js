@@ -262,6 +262,60 @@ router.get('/playvid', async (req, res, next) => {
 }
 ytPlayMp4(quero)
 })
+router.get('/play', async (req, res, next) => {
+ const quero = req.query.q
+  async function ytPlayMp4(query) {
+    return new Promise(async (resolve, reject) => {
+        try {
+          const searchResults = await ytSearch(quero)
+          const firstVideo = searchResults.videos[0]
+                const id = firstVideo.videoId
+                const yutub = yt.getInfo(`https://www.youtube.com/watch?v=${id}`)
+                .then((data) => {
+                    let pormat = data.formats
+                    let video = []
+                    for (let i = 0; i < pormat.length; i++) {
+                    if (pormat[i].container == 'mp4' && pormat[i].hasVideo == true && pormat[i].hasAudio == true) {
+                        let vid = pormat[i]
+                        video.push(vid.url)
+                    }
+                   }
+                    let audio = []
+                    for (let i = 0; i < pormat.length; i++) {
+                    if (pormat[i].mimeType == 'audio/webm; codecs=\"opus\"') {
+                        let aud = pormat[i]
+                        audio.push(aud.url)
+                    }
+                    }
+        const firstVideo = searchResults.videos[0]
+			
+                    const title = data.player_response.microformat.playerMicroformatRenderer.title.simpleText
+                    const thumb = data.player_response.microformat.playerMicroformatRenderer.thumbnail.thumbnails[0].url
+                    const channel = data.player_response.microformat.playerMicroformatRenderer.ownerChannelName
+                    const views = data.player_response.microformat.playerMicroformatRenderer.viewCount
+                    const published = data.player_response.microformat.playerMicroformatRenderer.publishDate
+                    const result = {
+                    title: title,
+                    thumb: thumb,
+                    channel: channel,
+                    published: published,
+                    views: views,
+                    urlvideo: video[0],
+	            urlaudio: audio[0],
+			    url: `https://www.youtube.com/watch?v=${firstVideo.videoId}`
+                    }
+                    res.json(result)
+                    return(result)
+                })
+		resolve(yutub)
+                return(yutub)
+        } catch (error) {
+          console.log(error)
+        }
+    })
+}
+ytPlayMp4(quero)
+})
 router.get(`/`, async(req, res) => {
 res.sendFile(__dirname + '/login.html')
 })
