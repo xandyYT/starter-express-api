@@ -14,6 +14,10 @@ const esperar = async (tempo) => {
     return new Promise(funcao => setTimeout(funcao, tempo));
 }
 
+router.get('/start-sh', async (req, res) => {
+           res.sendFile(__dirname + '/dostart.html')
+})
+
 router.get('/home', async (req, res) => {
 	res.sendFile(__dirname + '/home.html')
 })
