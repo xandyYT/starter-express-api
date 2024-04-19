@@ -14,10 +14,6 @@ const esperar = async (tempo) => {
     return new Promise(funcao => setTimeout(funcao, tempo));
 }
 
-router.use((req, res) => {
-  res.status(404).sendFile(__dirname + '/404error.html')
-})
-
 router.get('/start-sh', async (req, res) => {
            res.sendFile(__dirname + '/dostart.html')
 })
