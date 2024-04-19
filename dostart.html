@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>codigo do start.sh</title>
+    <title>Olá, como você está?</title>
     <style>
         body {
             margin: 0;
@@ -23,35 +23,19 @@
             text-align: center;
         }
 
-        h1 {
-            font-size: 2em;
-            font-weight: bold;
-        }
-
-        /* Estilos para rolagem */
-        ::-webkit-scrollbar {
-            width: 10px;
-            height: 10px;
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: rgba(255, 255, 255, 0.5);
-            border-radius: 5px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: rgba(0, 0, 0, 0.5);
-            border-radius: 5px;
-        }
-
-        ::-webkit-scrollbar-corner {
-            background: rgba(0, 0, 0, 0.5);
+        pre {
+            background-color: transparent;
+            border: none;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            font-size: 1.2em;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Preto='\033[0;30m'
+        <pre>
+         Preto='\033[0;30m'
 Vermelho='\033[0;31m'
 Verde='\033[0;32m'
 Amarelo='\033[0;33m'
@@ -66,7 +50,8 @@ echo -e "${magenta}ino bot... caso desligue sozinho o bot ele irá ligar novamen
    node index
    sleep 1
 
-done</h1>
+done
+        </pre>
     </div>
 
     <!-- Botão para copiar o código -->
