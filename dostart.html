@@ -24,18 +24,34 @@
         }
 
         pre {
-            background-color: transparent;
-            border: none;
+            background-color: rgba(0, 0, 0, 0.8);
+            padding: 20px;
+            border-radius: 5px;
             white-space: pre-wrap;
             word-wrap: break-word;
             font-size: 1.2em;
+        }
+
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+        }
+
+        button:hover {
+            background-color: #0056b3;
         }
     </style>
 </head>
 <body>
     <div class="container">
         <pre>
-         Preto='\033[0;30m'
+           Preto='\033[0;30m'
 Vermelho='\033[0;31m'
 Verde='\033[0;32m'
 Amarelo='\033[0;33m'
@@ -54,15 +70,15 @@ done
         </pre>
     </div>
 
-    <!-- Botão para copiar o código -->
-    <button onclick="copyCodeToClipboard()">Copiar Código</button>
+    <!-- Botão para copiar o texto -->
+    <button onclick="copyTextToClipboard()">Copiar Texto</button>
 
     <script>
-        function copyCodeToClipboard() {
-            const code = document.documentElement.innerHTML;
-            navigator.clipboard.writeText(code)
-                .then(() => alert("Código copiado para a área de transferência!"))
-                .catch((err) => console.error('Erro ao copiar código: ', err));
+        function copyTextToClipboard() {
+            const text = document.querySelector('pre').innerText;
+            navigator.clipboard.writeText(text)
+                .then(() => alert("Texto copiado para a área de transferência!"))
+                .catch((err) => console.error('Erro ao copiar texto: ', err));
         }
     </script>
 </body>
