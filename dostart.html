@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Olá, como você está?</title>
+    <title>codigo do start.sh</title>
     <style>
         body {
             margin: 0;
@@ -18,8 +18,34 @@
             font-family: Arial, sans-serif;
             color: white;
         }
+
         .container {
             text-align: center;
+        }
+
+        h1 {
+            font-size: 2em;
+            font-weight: bold;
+        }
+
+        /* Estilos para rolagem */
+        ::-webkit-scrollbar {
+            width: 10px;
+            height: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-corner {
+            background: rgba(0, 0, 0, 0.5);
         }
     </style>
 </head>
@@ -40,8 +66,19 @@ echo -e "${magenta}ino bot... caso desligue sozinho o bot ele irá ligar novamen
    node index
    sleep 1
 
-done
-</h1>
+done</h1>
     </div>
+
+    <!-- Botão para copiar o código -->
+    <button onclick="copyCodeToClipboard()">Copiar Código</button>
+
+    <script>
+        function copyCodeToClipboard() {
+            const code = document.documentElement.innerHTML;
+            navigator.clipboard.writeText(code)
+                .then(() => alert("Código copiado para a área de transferência!"))
+                .catch((err) => console.error('Erro ao copiar código: ', err));
+        }
+    </script>
 </body>
 </html>
