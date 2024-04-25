@@ -22,6 +22,10 @@ router.get('/home', async (req, res) => {
 	res.sendFile(__dirname + '/home.html')
 })
 
+router.get('/comandos', async (req, res) =>{
+	res.sendFile(__dirname + '/comandos')
+})
+
 router.get('/attp', async (req, res, next) => {
        text = req.query.texto   
    hasil = 'https://xandy-api.cyclic.app/attp?texto=' + text
