@@ -1,274 +1,707 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@7.4.47/css/materialdesignicons.min.css">
-  <link rel="shortcut icon" href="https://i.pinimg.com/564x/a2/f6/61/a2f661e1a93f7372eab3b8472fa02f2a.jpg" htttype="image/x-icon" />
-    <title>Xandy - API</title>
+    <title>XANDY - API</title>
+<link href="https://fonts.googleapis.com/css?family=Amatic+SC|Architects+Daughter|Bad+Script|Cookie|Courgette|Covered+By+Your+Grace|Dancing+Script|Gloria+Hallelujah|Great+Vibes|Handlee|Indie+Flower|Kaushan+Script|Pacifico|Patrick+Hand|Permanent+Marker|Sacramento|Satisfy|Shadows+Into+Light|Shadows+Into+Light+Two|Tangerine|Yellowtail"
+              rel="stylesheet"> 
+ 
 
-    <style>
-        body {
-    font-family: Arial, Helvetica, sans-serif;
-       background: #310404 url(https://i.pinimg.com/originals/f2/bf/43/f2bf432e3a5c7b14a2c97451e7c6c50f.gif) no-repeat center center fixed;
-            /*coloca a url de uma foto ou gif aqui para mudar o background.*/
-            -webkit-background-size: cover;
-            -moz-background-size: cover;
-            -o-background-size: cover;
-            background-size: cover;
-            color: black;
-            margin: 0;
-            padding: 0;
-        }
-      h1{
-            font-family: 'Kaushan Script', cursive;
-            font-size: 20px;
-        }
-      h2{
-          font-family: 'Kaushan Script', cursive;
-          font-size: 20px;
-      }
-      h3{
-          font-family: 'Kaushan Script', cursive;
-           font-size: 20px;
-         color: black;
-      }
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 
-        center{
-       color: white ; 
-        }
-      html {
-      scroll-behavior: smooth;
-      }
-      .sidebar {
-          height: 100%;
-          width: 0;
-          position: fixed;
-          top: 0;
-          left: 0;
-          background: linear-gradient(to right, #2EFEF7, #DCDCDC); 
-          padding-top: 60px;
-          transition: width 0.5s; 
-          overflow-x: hidden;
-          box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-          border-radius: 0 30px 30px 0;
-         z-index: 99;
-      }
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
 
-      .sidebar a {
-          padding: 10px 15px;
-          text-decoration: none;
-          font-size: 18px;
-          color: black;
-          display: block;
-          transition: background-color 0.3s; 
-          border-radius: 0 20px 20px 0;
-      }
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@7.4.47/css/materialdesignicons.min.css">
 
-      .sidebar a:hover {
-          background-color: #f1f1f1; 
-      }
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
 
 
-      .sidebar .closebtn {
-          position: absolute;
-          top: 10px;
-          right: 25px;
-          font-size: 36px;
-          margin-left: 50px;
-          color: black; 
-      }
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.0/themes/prism.min.css">
 
-      .content {
-          margin-left: 0;
-          padding: 20px;
-          transition: margin-left 0.5s;
-      }
-
-      .openbtn {
-          font-size: 20px;
-          cursor: pointer;
-          background-color: #111;
-          color: white;
-          padding: 10px 15px;
-          border: none;
-          position: fixed;
-          top: 10px;
-          left: 10px;
-          z-index: 999;
-          border-radius: 50%; 
-          box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
-      }
-
-
-        .cabeca {
-            font-family: 'Kaushan Script', cursive;
-            font-size: 20px;
-            background: linear-gradient(to right, #2EFEF7, #7401DF);
-            color: black;
-            text-align: center;
-            padding: 20px;
-            box-shadow: 10px 10px 10px black;
-        }
-
-        .center-image {
-            text-align: center;
-            margin-top: 20px;
-        }
-
-        .center-image img {
-            border-radius: 100%;
-            width: 200px;
-            /* Ajuste o tamanho da imagem */
-            height: 200px;
-            /* Ajuste o tamanho da imagem  */
-        }
-
-        .footer {
-            text-align: center;
-            font-size: 12px;
-            margin: 10px;
-            color: white;
-            background: black;
-            padding: 15px;
-            box-shadow: 0 0 3px white;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-        }
-
-        .footer a {
-            color: red;
-            text-decoration: none;
-        }
-
-  
-      .welcome-container {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          position: fixed; /* Ou 'absolute', dependendo do layout */
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-
-        pointer-events: none; 
-      }
-
-      .welcome-box {
-          position: relative;
-          width: 350px; /* Ajuste conforme necessário */
-          padding: 100px;
-
-          background: linear-gradient(to right,#D3D3D3, #7401DF);
-          border-radius: 10px;
-          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-          text-align: center;
-          pointer-events: auto; 
-      }
-
-
-      .close-btn {
-          position: absolute;
-          top: 7px;
-          right: 5px;
-          cursor: pointer;
-          font-size: 27px;
-          color: #000000;
-      }
-
-      .welcome-image {
-          width: 150px;
-          height: 150px;
-          border-radius: 50%;
-          margin-bottom: 25px;
-          box-shadow: 0px 0px 23px 3px red;
-      }
-
-      .welcome-text {
-          margin: 0;
-          font-family: Arial, sans-serif;
-          color: #000000;
-        }
-    </style>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
 </head>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-<body>
-    <div class="sidebar" id="mySidebar">
-      <center>
-         <h3>rotas da api</h3>
-      </center>
-     
-        <br><br><br>
-        <a href="/playvid?quero=luva de predeiro">Play video</a>
-        <a href="/playaudio?quero=luva de predeiro">Play audio</a>
-        <a href="/play?q=receba">play audio e video</a>
-         <a href="/yt?query=receba">youtube</a>
-            <a href="/start-sh">start.sh</a>
-<h3>sei la ne... ajuda divulgando a api ae, vou add mais coisa no futuro</h3>
-    </div>
-
-    <div class="content" id="main">
-        <div class="cabeca">
-            <p class="mdi mdi-check-decagram" style="animation: bounce 2s infinite;">XANDY - API</p>
-        </div>
-        <br>
-        <div class="center-image">
-            <a href="https://i.pinimg.com/564x/e3/11/6a/e3116a3d280311bd7d3fceb656de0c1d.jpg" alt="pedrozz: criador">
-                <img class="round-image" src="https://i.pinimg.com/originals/51/3e/a2/513ea2f377429021936eb86f40c309b5.gif" alt="by Pedrozz">
-            </a>
-        </div>
-        <center>
-            <h1>SEJA BEM VINDO A API 💖</h1>
-        </center>
-    </div>
-  <div class="welcome-container">
-    <div id="welcomeBox" class="welcome-box">
-      <div class="close-btn" onclick="closeWelcomeBox()">X</div>
-  <img src="https://i.pinimg.com/originals/11/e1/5c/11e15c5cef1d147294658f7dac581342.gif" class="welcome-image" alt="Usuário">
-      <h2 class="welcome-text">SEJA BEM-VINDO(A) USUARIO(A) 😊</h2>
-      <br></br>
-     <p class="welcome-text">Feita com ❤️ por Pedrozz</p>
-      <br>
-       <p class="welcome-text" id="text1"></p>
-    </div>
-      </div>
-    <footer class="footer">
-        <div class="d-sm-flex justify-content-center justify-content-sm-between">
-            <p><span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © 2024 Xandy</span></p>
-        </div>
-    </footer>
-
-    <button class="openbtn" onclick="toggleNav()">&#9776;</button>
-
-    <script>
-        function toggleNav() {
-            var sidebar = document.getElementById("mySidebar");
-            if (sidebar.style.width === "250px") {
-                sidebar.style.width = "0";
-                document.getElementById("main").style.marginLeft = "0";
-            } else {
-                sidebar.style.width = "250px";
-                document.getElementById("main").style.marginLeft = "250px";
-            }
-        }
-      function closeWelcomeBox() {
-
-          document.querySelector('.welcome-container').style.display = 'none';
-            }
-
-      function showWelcomeBox() {
-
-          document.getElementById('welcomeBox').style.display = 'block';
-      }
-
-      function closeWelcomeBox() {
-          document.getElementById('welcomeBox').style.display = 'none';
-      }
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" charset="UTF-8" >
     </script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@7.4.47/css/materialdesignicons.min.css">
+
+   <meta name='viewport' content='width=device-width, initial-scale=1'>
+  <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+  <link rel="shortcut icon" href="https://i.pinimg.com/564x/4d/99/f8/4d99f8a9893e82e253b1a4f4b9450c04.jpg" type="image/x-icon" />
+                                                            
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+            body {
+  font-family: 'Montserrat', sans-serif;
+  padding-top: 56px;
+  transition: background-color 0.5s;
+  background-color: #FFFFFF;
+  background: linear-gradient(to bottom right, #151515, #848484, #D8D8D8);
+  }
+  body {
+    font-family: 'Montserrat', sans-serif;
+background: url(https://i.pinimg.com/originals/df/fd/77/dffd7761d0d86ff0d8ef90e5c285fe96.gif) no-repeat center center fixed;
+-webkit-background-size: cover;
+-moz-background-size: cover;
+-o-background-size: cover;
+background-size: cover;
+color: white;
+  }
+
+.jumbotron {
+                padding: 2rem;
+                margin-bottom: 2rem;
+                border-radius: 10px;
+                background-color: #3d78f0;
+                box-shadow: -5.74px 1.75px 6px #000000;
+
+
+            }
+
+            .content-section {
+                margin-bottom: 3rem;
+                padding: 2rem;
+                border-radius: 10px;
+                transition: background-color 0.5s;
+                background-color: #3d78f0;
+                box-shadow: -5.74px 1.75px 6px #000000;
+                text-align: justify;
+            }
+
+            .section-title {
+                font-size: 24px;
+                font-weight: bold;
+                margin-bottom: 1rem;
+               color: white;
+            }
+
+            .table-command td {
+                white-space: pre-line;
+                font-family: 'Courier New', monospace;
+            }
+
+            .highlight {
+                background-color: #000;
+                color: limegreen;
+            }
+
+          .container {
+        margin-top: 20px; 
+    }
+
+    .footer{
+    text-align: center;
+    font-size: 12px;
+    margin: 10px;
+    color: white;
+    background: black;
+    margin: 0;
+    padding: 15px;
+    box-shadow: 0 0 3px white;
+    }
+    .footer a{
+    color: red;
+    text-decoration: none;
+    }
+
+    h3{
+        font-family: 'Kaushan Script', cursive;
+        font-size:13px;
+    }
+    center{
+   color: white ; 
+    }
+  html {
+  scroll-behavior: smooth;
+  }
+
+    .box div {
+      position: absolute;
+      width: 60px;
+      height: 60px;
+      background-color: transparent;
+      border: 6px solid rgba(255,255,255,0.8);
+      transform: rotate(15deg);
+                    -webkit-transform:rotate(15deg);
+    }
+
+    .box div:nth-child(1) {
+      top: 12%;
+      left: 42%;
+      animation: animate 5s linear infinite;
+    }
+
+    .box div:nth-child(2) {
+      top: 70%;
+      left: 50%;
+      animation: animate 7s linear infinite;
+    }
+    .box div:nth-child(3) {
+      top: 17%;
+      left: 6%;
+      animation: animate 9s linear infinite;
+    }
+
+    .box div:nth-child(4) {
+      top: 20%;
+      left: 60%;
+      animation: animate 10s linear infinite;
+    }
+
+    .box div:nth-child(5) {
+      top: 67%;
+      left: 10%;
+      animation: animate 6s linear infinite;
+    }
+
+    .box div:nth-child(6) {
+      top: 80%;
+      left: 70%;
+      animation: animate 12s linear infinite;
+    }
+
+    .box div:nth-child(7) {
+      top: 60%;
+      left: 80%;
+      animation: animate 12s linear infinite;
+    }
+
+    .box div:nth-child(8) {
+      top: 32%;
+      left: 25%;
+      animation: animate 16s linear infinite;
+    }
+
+    .box div:nth-child(9) {
+      top: 90%;
+      left: 25%;
+      animation: animate 9s linear infinite;
+    }
+
+    .box div:nth-child(10) {
+      top: 20%;
+      left: 80%;
+      animation: animate 5s linear infinite;
+    }
+
+    @keyframes animate {
+      0% {
+        transform: scale(0) translateY(-90px) rotate(360deg);
+        opacity: 1;
+      }
+
+      100% {
+        transform: scale(1.3) translateY(-90px) rotate(-180deg);
+        border-radius: 50%;
+        opacity: 0;
+      }
+    }
+
+  .preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  z-index: 9999; 
+  }
+
+  .preloader img {
+  width: 70px; 
+  height: auto; 
+  margin-bottom: 20px; 
+  margin-left: 50px;
+  position: relative;
+  left: 4em;
+  }
+
+  .loader {
+  width: 200px;
+  height: 22px;
+  border-radius: 20px;
+  color: #000000;
+  border: 2px solid;
+  position: relative;
+  right: 4em;
+  top: 4em;
+  }
+  .loader::before {
+  content: "";
+  position: absolute;
+  margin: 2px;
+  inset: 0 100% 0 0;
+  border-radius: inherit;
+  background: #FF0040; 
+  box-shadow: 0 0 5px #FF0040, 0 0 25px #FF0040, 0 0 50px #FF0040, 0 0 200px #FF0040;
+  animation: l6 3.5s infinite;
+  }
+
+  @keyframes l6 {
+  100% {inset:0}
+  }
+    #Quote{
+        text-shadow: 0 0 150px #0ff,
+              0 0  250px #0ff,
+              0 0  500px #0ff,
+              0 0  1000px #0ff,
+              0 0  1500px #0ff,
+              inset 0 0 500px #0ff;
+              color: #ffffff;
+              background: linear-gradient(45deg, #1f1f1f, #000000, #2d2d2d, #0a0a0a) ;
+              background-size: 200% 200%;
+             -webkit-background-clip: text;
+             -webkit-text-stroke: 1.5px transparent;
+             letter-spacing: 1px;
+    }
+
+    button2 {
+        padding: 10px 20px;
+        border: none;
+        background-color: #58FAAC;
+        color: white;
+        border-radius: 50px;
+        cursor: pointer;
+        transition: background-color 0.3s, transform 0.2s;
+        margin-right: 10px;
+    }
+
+    button2:last-child {
+        margin-right: 0;
+    }
+
+    button2:hover {
+        background-color: #0B6138;
+    }
+
+    button2:active {
+        transform: translateY(-9px);
+    }
+    .center-image {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .center-image img {
+      border-radius: 100%;
+      width: 200px; /* Ajuste o tamanho da imagem conforme necessário */
+      height: 200px; /* Ajuste o tamanho da imagem conforme necessário */
+     }
+
+  .side-bar{
+    background: rgba(000,000,000 , 0.2);
+    backdrop-filter:blur(15px);
+    width: 290px;
+    height: 100vh;
+    position: fixed;
+    top:0;
+    left: -100%;
+    overflow-y: auto;
+    transition: 0.5s ease;
+    transition-property: left;
+    z-index: 9999;
+  }
+
+  .side-bar.active{
+    left: 0;
+  }
+
+  .side-bar .menu{
+    width: 100%;
+    margin-top: 35px;
+    text-shadow: 7px 7px 7px black;
+  }
+
+  .side-bar .menu .item{
+    position:relative;
+    cursor:pointer;
+  }
+
+  .side-bar .menu .item a{
+    color: #fff;
+    font-size: 16px;
+    text-decoration: none;
+    display: block;
+    padding: 5px 30px;
+    line-height: 40px;
+  }
+
+  .side-bar .menu .item a:hover{
+    transition: 0.3s ease;
+
+  }
+
+  .side-bar .menu .item i{
+    margin-right: 10px;
+  }
+
+  .side-bar .menu .item a .dropdown{
+    background: rgba(000,000,000 , 0.0);
+    position: absolute;
+    right:0;
+    margin: 13px;
+    transition: 0.3s ;
+  }
+  .sub-btn{
+    text-shadow: 7px 7px 7px black;
+    background: rgba(000,000,000 , 0.0);
+  }
+  .side-bar .menu .item .sub-menu{
+    background: transparent;
+    display:none;
+    box-shadow: 0 0 5px white;
+
+  }
+
+  .side-bar .menu .item .sub-menu a{
+    padding-left: 80px;
+    box-shadow: 0 0 5px white;
+
+  }
+
+  .rotate{
+    transform: rotate(90deg);
+  }
+  .item{
+    box-shadow: 0 0 2px white;
+    border-radius: 9px;
+    margin: 5px;
+  }
+  .close-btn{
+    position: absolute;
+    color: black;
+    font-size: 30px;
+    right: 0;
+    margin: 25px;
+    cursor: pointer;
+
+  }
+  .menu-btn i{
+
+  }
+
+  .menu-btn{
+    position: absolute;
+    color: #fff;
+    font-size: 25px;
+    margin: 17px;
+    cursor:pointer;
+    z-index: 9999;
+  }
+  .fe img{
+    position: absolute;
+    width: 30px;
+    position: absolute;
+    margin: 15px;
+    margin-left: 90%;
+    border-radius: 50%;
+    box-shadow: 0 0 30px white;
+  }
+
+  h1{
+    text-align: center;
+
+    margin-top: 25px;
+  }
+
+  .ab i{
+    border-radius: 50%;
+    text-align: center;
+
+  }
+  .txt i {
+    text-align: center;
+
+    margin-top: 25px;
+    font-size: 25px;
+    margin-left: 25px;
+    right: 1px;
+
+  }
+  .tutotxt {
+    background-color: var(--color-dark3);
+    border-radius: 7px;  
+    margin: 24px;
+    box-shadow: 0 0 7px darkgray;
+
+    }
+  .fotos {
+    width: 90%;
+    border-radius: 7px;
+  }
+  .tutotxtt{
+
+    margin: 7px;
+    text-align: center;
+  }
+  .aaaa {
+
+    margin: 5px;
+  }
+
+  .pedrozz{
+  color: black;
+  }
+  .pedrozz2{
+  color: #000000;
+
+  }
+  .pedrozz3{
+  color: #000000;
+
+  }
+
+</style>
+<body>
+               <nav>
+
+                      <div class="menu-btn">
+                        <i class="fas fa-bars"></i>
+
+                      </div>
+
+
+                      </div>
+
+                      <div class="side-bar">
+                        <div class="close-btn">
+                          <i class="mdi mdi-close-thick"></i>
+                        </div>
+
+                         <div class="txt">
+                           <br></br><br></br><br></br>
+  <i class="mdi mdi-monitor-cellphone"></i><i>XANDY - API</i>
+
+                          </div>
+              <br>
+              <hr>
+
+                     <div class="menu">
+
+            <br></br>        
+            <br></br>
+
+                <div class="item">
+            <a class="sub-btn"><i class='fa fa-download'></i>DOWLOADS<i class="fas fa-angle-right dropdown"></i></a>
+            <div class="sub-menu">
+
+  <a class="dropdown-item" target="_blank" href="/playaudio?quero=luva de predeiro">Play audio</a>
+<a class="dropdown-item" target="_blank" href="/playvid?quero=luva de predeiro">Play Video</a>
+              <a class="dropdown-item" target="_blank" href="/play?quero=receba">Play audio/video</a>
+              <a class="dropdown-item" target="_blank" href="/yt?query=receba">Youtube</a>
+
+            </div>
+            </div>
+
+            <br></br>
+                       <div class="item">
+                         <a class="sub-btn"><i class='fa fa-download'></i>STICKER<i class="fas fa-angle-right dropdown"></i></a>
+                         <div class="sub-menu">
+  <a class="dropdown-item" target="_blank" href="#">Attp</a>
+                          
+
+                         </div>
+                         </div>
+            <br></br>
+                  <div class="item">
+                     <a class="sub-btn"><i class='mdi mdi-robot-happy'></i>BOTS<i class="fas fa-angle-right dropdown"></i></a>
+                     <div class="sub-menu">
+                  <a class="dropdown-item" target="_blank" href="/start-sh">sh.start</a>
+
+
+                     </div>
+                     </div>
+            <br></br>
+
+                        <hr>
+                        <br>
+            <div class="item">
+              <a class="sub-btn"><i class='mdi mdi-shield-crown'></i><i class="sup">SUPORTE</i><i class="fas fa-angle-right dropdown"></i></a>
+            <div class="sub-menu">
+            <a class="mdi mdi-shield-crown" href="http://wa.me/SEUNUMERO">XANDY</a>
+            <a class="mdi mdi-shield-crown" href="http://wa.me/556199317165">Pedrozz</a>
+            </div>
+            </div>
+                        <br></br><br></br><br></br>
+
+                      </div>
+                      </div>
+                      </div>
+
+
+            </div>
+            </div>
+
+                  </nav
+                    </header>
+    <div class="wrapper">
+
+    <div class="preloader">
+        <img src="https://i.pinimg.com/originals/36/67/45/366745cdf355e46f8dad7b7f0809352e.gif" alt="Preloader Image">
+        <div class="loader"></div>
+    </div>
+      <div class="center-image">
+        <a href="/" alt="pedrozz: criador">
+        <img class="round-image" src="https://i.pinimg.com/originals/51/3e/a2/513ea2f377429021936eb86f40c309b5.gif" alt="by Pedrozz">
+        </a>
+        <h3>XANDY API</h3>
+    <div class="container" data-aos="fade-up">
+        <div class="jumbotron">
+            <h3 id="quote" class="display-4"> Seja Bem-Vindo a Xandy - Apis</h3>
+            <p class="lead">
+<h3 id="Quote">SALADAAAAAAAAAAAA</h3>
+            </p>
+               
+
+        </div>
+
+
+        <div id="whatisos" class="content-section">
+            <h2 class="section-title"><i class="fas fa-cogs"></i>O que você vai encontrar aqui...</h2>
+              <p>
+    <strong>XAndy fala:</strong>
+    <br>Muito conhecimento<strong></strong>
+    <br>Apis diversas<strong></strong>
+    <br>Suporte<strong></strong>
+</p>
+        </div>
+
+
+        <div id="historyoflinux" class="content-section">
+            <h2 class="section-title"><i class="mdi mdi-cart-check"></i>ApiKeys</h2>
+            <p>
+    <strong>Se você quiser uma api key personalizada ou aumenta suas request veja os preços...
+</p>
+             <center><a href="/"><button2 class="mdi mdi-ip-network-outline">Preços</button2></a></center>    
+        </div>
+
+
+</div
+
+
+
+
+        <div></div>
+</p>
+
+        </div>
+    </div>
+
+
+              <footer class="footer">
+                <div class="d-sm-flex justify-content-center justify-content-sm-between">
+                <p><span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © 2024 Xandy api</span></p>
+                
+                </div>
+                 </footer>
+
+         <script>
+           window.onload = function() {
+               setTimeout(function() {
+                   document.querySelector('.preloader').style.display = 'none';
+               }, 3000); 
+
+               setTimeout(initAOS, 3500);
+
+               setTimeout(showSwalAlert, 5000);
+
+               setInterval(function() {
+                   document.getElementById('slide' + contador).checked = true;
+                   contador++;
+                   if (contador > 5) {
+                       contador = 1;
+                   }
+               }, 3000);
+           };
+
+           function initAOS() {
+               AOS.init();
+           }
+
+           function showSwalAlert() {
+             Swal.fire({
+               title: 'Ola Usuario!',
+               html: `
+                   <i class="fa fa-heart fa-5x" style="color: #FF0040;"></i><br>
+                   Ola! Seja Bem Vindo a Xandy - api! <a href='LINK'>XANDY</a>&nbsp;</p>
+               `,
+               showClass: {
+                   popup: 'animate_animated animate_fadeInDown'
+               },
+               hideClass: {
+                   popup: 'animate_animated animate_fadeOutUp'
+               }
+           });
+
+           }
+            // alert('deseja continuar?')
+                 $(document).ready(function(){
+
+                   $('.sub-btn').click(function(){
+                     $(this).next('.sub-menu').slideToggle();
+                     $(this).find('.dropdown').toggleClass('rotate');
+                   });
+
+                   $('.menu-btn').click(function(){
+                     $('.side-bar').addClass('active');
+                     $('.menu-btn').css("visibility", "hidden");
+                   });
+
+                   $('.close-btn').click(function(){
+                     $('.side-bar').removeClass('active');
+                     $('.menu-btn').css("visibility", "visible");
+                   });
+
+                 });
+
+
+         let contador = 1;
+
+         setInterval( function(){
+             document.getElementById('slide' + contador).checked = true;
+             contador++;
+
+             if (contador > 5) {
+           contador = 1;
+         }
+         }, 3000 );
+
+         document.addEventListener('DOMContentLoaded', (event) => {
+             showWelcomeBox();
+         });
+
+         function closeWelcomeBox() {
+
+             document.querySelector('.welcome-container').style.display = 'none';
+               }
+
+         function showWelcomeBox() {
+
+             document.getElementById('welcomeBox').style.display = 'block';
+         }
+
+         function closeWelcomeBox() {
+             document.getElementById('welcomeBox').style.display = 'none';
+         }
+
+
+                       </script>
+
+           <script>
+             document.getElementById('imagem').addEventListener('click', function() {
+               window.location.href = 'perfil.html';
+             });
+               </script>
 </body>
 
 </html>
