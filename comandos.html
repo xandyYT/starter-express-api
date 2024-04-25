@@ -21,7 +21,7 @@
     align-items: center;
   }
   #header a {
-    color: #0000FF; /* azul escuro */
+    color: #003366; /* azul escuro */
     text-decoration: none;
   }
   #header a:hover {
@@ -42,6 +42,7 @@
     padding: 10px;
     border-radius: 5px;
     display: none;
+    animation: slideDown 0.5s ease forwards;
   }
   #filter label {
     display: block;
@@ -49,6 +50,17 @@
   #options p {
     color: white; /* alterado para branco */
     cursor: pointer;
+  }
+  
+  @keyframes slideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 </style>
 </head>
@@ -75,9 +87,13 @@
   function toggleFilter() {
     var filter = document.getElementById("filter");
     if (filter.style.display === "block") {
-      filter.style.display = "none";
+      filter.style.animation = "slideUp 0.5s ease forwards";
+      setTimeout(function() {
+        filter.style.display = "none";
+      }, 500);
     } else {
       filter.style.display = "block";
+      filter.style.animation = "slideDown 0.5s ease forwards";
     }
   }
   
