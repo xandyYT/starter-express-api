@@ -45,51 +45,42 @@
     <div id="video-overlay">
         <a id="download-link" href="#">Baixar Vídeo</a>
     </div>
-    <video controls>
-        <source id="video-source" src="" type="video/mp4">
+    <video id="video" controls>
         Your browser does not support the video tag.
     </video>
 </div>
 
 <script>
     const ytSearch = require('yt-search');
-const yt = require('ytdl-core')
-    const urlParams = new URLSearchParams(window.location.search);
-    const quero = urlParams.get('assistirvid');
-  
-  async function ytPlayMp4(query) {
-    return new Promise(async (resolve, reject) => {
+    const yt = require('ytdl-core');
+
+    async function loadVideo(query) {
         try {
-          const searchResults = await ytSearch(quero)
-          const firstVideo = searchResults.videos[0]
-                const id = firstVideo.videoId
-                const yutub = yt.getInfo(`https://www.youtube.com/watch?v=${id}`)
-                .then((data) => {
-                    let pormat = data.formats
-                    let video = []
-                    for (let i = 0; i < pormat.length; i++) {
-                    if (pormat[i].container == 'mp4' && pormat[i].hasVideo == true && pormat[i].hasAudio == true) {
-                        let vid = pormat[i]
-                        video.push(vid.url)
-                    }
-                   }
-                    const randomVideoLink = video[0]
+            const searchResults = await ytSearch(query);
+            const firstVideo = searchResults.videos[0];
+            const videoId = firstVideo.videoId;
+            const videoInfo = await yt.getInfo(`https://www.youtube.com/watch?v=${videoId}`);
+            const formats = videoInfo.formats;
+            const mp4Format = formats.find(format => format.container === 'mp4' && format.hasVideo && format.hasAudio);
+            const videoUrl = mp4Format.url;
 
-    // Define o link de vídeo como a fonte do vídeo
-    const videoSource = document.getElementById('video-source');
-    videoSource.src = randomVideoLink
+            const videoElement = document.getElementById('video');
+            videoElement.src = videoUrl;
 
-    // Atualiza o href do link de download
-    const downloadLink = document.getElementById('download-link');
-    downloadLink.href = randomVideoLink;
-                })
-                return(yutub)
+            const downloadLink = document.getElementById('download-link');
+            downloadLink.href = videoUrl;
         } catch (error) {
-          console.log(error)
+            console.error('Erro ao carregar o vídeo:', error);
         }
-    })
-}
-ytPlayMp4(quero)
-    </script>
+    }
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const query = urlParams.get('assistirvid');
+    if (query) {
+        loadVideo(query);
+    }
+</script>
+</body>
+</html>
 </body>
 </html>
