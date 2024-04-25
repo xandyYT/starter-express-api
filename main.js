@@ -18,6 +18,10 @@ router.get('/start-sh', async (req, res) => {
            res.sendFile(__dirname + '/dostart.html')
 })
 
+router.get('/assistir', async(req, res) =>{
+	res.sendFile(__dirname + '/assistir.html')
+})
+
 router.get('/home', async (req, res) => {
 	res.sendFile(__dirname + '/home.html')
 })
