@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Exemplo</title>
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-image: url('https://i.pinimg.com/originals/f2/bf/43/f2bf432e3a5c7b14a2c97451e7c6c50f.gif');
+    background-size: cover;
+  }
+  #header {
+    background-color: red;
+    padding: 10px;
+    position: relative;
+  }
+  #header a {
+    color: white;
+    text-decoration: none;
+  }
+  #header a:hover {
+    text-decoration: underline;
+  }
+  #filter {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: white;
+    padding: 10px;
+    border-radius: 5px;
+    display: none;
+  }
+</style>
+</head>
+<body>
+<div id="header">
+  <a href="/" id="xandy-api">xandy-api</a>
+  <div id="filter-toggle" onclick="toggleFilter()">filtrar &#9776;</div>
+</div>
+<div id="filter">
+  <label><input type="checkbox" name="verificacao"> verificação</label><br>
+  <label><input type="checkbox" name="basicos"> básicos</label><br>
+  <label><input type="checkbox" name="antis"> antis</label><br>
+  <label><input type="checkbox" name="adm"> adm</label><br>
+  <label><input type="checkbox" name="brincadeiras"> brincadeiras</label><br>
+  <label><input type="checkbox" name="membros"> membros</label><br>
+</div>
+<div id="options">
+  <p onclick="toggleOptions('ppt')">ppt</p>
+  <p onclick="toggleOptions('antilink')">antilink</p>
+  <p onclick="toggleOptions('mensagem')">mensagem de texto</p>
+  <p onclick="toggleOptions('ban')">ban</p>
+</div>
+<script>
+  function toggleFilter() {
+    var filter = document.getElementById("filter");
+    if (filter.style.display === "block") {
+      filter.style.display = "none";
+    } else {
+      filter.style.display = "block";
+    }
+  }
+  
+  function toggleOptions(option) {
+    var checkboxes = document.querySelectorAll('input[type="checkbox"]');
+    for (var i = 0; i < checkboxes.length; i++) {
+      checkboxes[i].checked = false;
+    }
+    switch (option) {
+      case 'ppt':
+        document.querySelector('input[name="brincadeiras"]').checked = true;
+        document.querySelector('input[name="membros"]').checked = true;
+        window.location.href = '/ppt';
+        break;
+      case 'antilink':
+        document.querySelector('input[name="antis"]').checked = true;
+        document.querySelector('input[name="adm"]').checked = true;
+        window.location.href = '/antilink';
+        break;
+      case 'mensagem':
+        document.querySelector('input[name="basicos"]').checked = true;
+        document.querySelector('input[name="membros"]').checked = true;
+        window.location.href = '/mensagem';
+        break;
+      case 'ban':
+        document.querySelector('input[name="adm"]').checked = true;
+        window.location.href = '/ban';
+        break;
+      default:
+        break;
+    }
+  }
+</script>
+</body>
+</html>
