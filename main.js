@@ -23,7 +23,7 @@ router.get('/home', async (req, res) => {
 })
 
 router.get('/comandos', async (req, res) =>{
-	res.sendFile(__dirname + '/comandos')
+	res.sendFile(__dirname + '/comandos.html')
 })
 
 router.get('/attp', async (req, res, next) => {
