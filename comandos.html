@@ -16,22 +16,39 @@
     background-color: red;
     padding: 10px;
     position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
   #header a {
-    color: white;
+    color: #003366; /* azul escuro */
     text-decoration: none;
   }
   #header a:hover {
     text-decoration: underline;
   }
+  #filter-toggle {
+    color: white;
+    background-color: black;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
   #filter {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
+    position: absolute;
+    top: calc(100% + 10px);
+    right: 0;
     background-color: white;
     padding: 10px;
     border-radius: 5px;
     display: none;
+  }
+  #filter label {
+    display: block;
+  }
+  #options p {
+    color: white; /* alterado para branco */
+    cursor: pointer;
   }
 </style>
 </head>
@@ -41,12 +58,12 @@
   <div id="filter-toggle" onclick="toggleFilter()">filtrar &#9776;</div>
 </div>
 <div id="filter">
-  <label><input type="checkbox" name="verificacao"> verificação</label><br>
-  <label><input type="checkbox" name="basicos"> básicos</label><br>
-  <label><input type="checkbox" name="antis"> antis</label><br>
-  <label><input type="checkbox" name="adm"> adm</label><br>
-  <label><input type="checkbox" name="brincadeiras"> brincadeiras</label><br>
-  <label><input type="checkbox" name="membros"> membros</label><br>
+  <label><input type="checkbox" name="verificacao"> verificação</label>
+  <label><input type="checkbox" name="basicos"> básicos</label>
+  <label><input type="checkbox" name="antis"> antis</label>
+  <label><input type="checkbox" name="adm"> adm</label>
+  <label><input type="checkbox" name="brincadeiras"> brincadeiras</label>
+  <label><input type="checkbox" name="membros"> membros</label>
 </div>
 <div id="options">
   <p onclick="toggleOptions('ppt')">ppt</p>
@@ -73,24 +90,30 @@
       case 'ppt':
         document.querySelector('input[name="brincadeiras"]').checked = true;
         document.querySelector('input[name="membros"]').checked = true;
-        window.location.href = '/ppt';
         break;
       case 'antilink':
         document.querySelector('input[name="antis"]').checked = true;
         document.querySelector('input[name="adm"]').checked = true;
-        window.location.href = '/antilink';
         break;
       case 'mensagem':
         document.querySelector('input[name="basicos"]').checked = true;
         document.querySelector('input[name="membros"]').checked = true;
-        window.location.href = '/mensagem';
         break;
       case 'ban':
         document.querySelector('input[name="adm"]').checked = true;
-        window.location.href = '/ban';
         break;
       default:
         break;
+    }
+    // Filtrar os itens
+    var items = document.querySelectorAll('#filter label');
+    for (var i = 0; i < items.length; i++) {
+      var checkbox = items[i].querySelector('input[type="checkbox"]');
+      if (checkbox.checked) {
+        items[i].style.display = 'block';
+      } else {
+        items[i].style.display = 'none';
+      }
     }
   }
 </script>
