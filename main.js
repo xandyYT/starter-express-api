@@ -31,11 +31,16 @@ router.get('/comandos', async (req, res) =>{
 })
 
 router.get('/attp', async (req, res, next) => {
+	try{
        text = req.query.texto   
    hasil = 'https://xandy-api.cyclic.app/attp?texto=' + text
 	  data = await fetch(hasil).then(v => v.buffer())   
          await fs.writeFileSync(__dirname+'/attp1.webp',data)
         res.sendFile(__dirname+'/attp1.webp')
+	}catch(er){
+		res.json({message: "error"})
+		console.log(er)
+	}
 })
 
 router.get('/meufilme', async (req, res)=>{
