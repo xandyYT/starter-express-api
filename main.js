@@ -13,6 +13,11 @@ async function getJson(url) {
    return he
 }
 
+async function getBuffer(url) {
+  he = await fetch(url).then(c => c.buffer())
+   return he
+}
+
 const fetch = require('node-fetch')
     const apikey = JSON.parse(fs.readFileSync(__dirname + '/registros.json'))
 const esperar = async (tempo) => {
