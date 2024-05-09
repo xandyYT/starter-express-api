@@ -7,6 +7,7 @@ const fs = require('fs')
 const axios = require('axios')
 const cheerio = require('cheerio')
 const g = require('assemblyai')
+const fetch = require('node-fetch')
 
 async function getJson(url) {
   he = await fetch(url).then(c => c.json())
