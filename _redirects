@@ -1,0 +1,6 @@
+# Redirects from what the browser requests to what we serve
+/play                /
+/playaud   /blog/my-post
+/playvid                /blog
+/attp              https://www.petsofnetlify.com
+/authors/c%C3%A9line /authors/about-c%C3%A9line
