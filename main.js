@@ -19,7 +19,6 @@ async function getBuffer(url) {
    return he
 }
 
-const fetch = require('node-fetch')
     const apikey = JSON.parse(fs.readFileSync(__dirname + '/registros.json'))
 const esperar = async (tempo) => {
     return new Promise(funcao => setTimeout(funcao, tempo));
