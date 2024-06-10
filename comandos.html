@@ -1,137 +1,97 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Exemplo</title>
-<style>
-  body {
-    margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
-    background-image: url('https://i.pinimg.com/originals/f2/bf/43/f2bf432e3a5c7b14a2c97451e7c6c50f.gif');
-    background-size: cover;
-  }
-  #header {
-    background-color: red;
-    padding: 10px;
-    position: relative;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  #header a {
-    color: #003366; /* azul escuro */
-    text-decoration: none;
-  }
-  #header a:hover {
-    text-decoration: underline;
-  }
-  #filter-toggle {
-    color: white;
-    background-color: black;
-    padding: 10px;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  #filter {
-    position: absolute;
-    top: calc(100% + 10px);
-    right: 0;
-    background-color: white;
-    padding: 10px;
-    border-radius: 5px;
-    display: none;
-    animation: slideDown 0.5s ease forwards;
-  }
-  #filter label {
-    display: block;
-  }
-  #options p {
-    color: white; /* alterado para branco */
-    cursor: pointer;
-  }
-  
-  @keyframes slideDown {
-    from {
-      opacity: 0;
-      transform: translateY(-10px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Filtragem de Opções</title>
+    <style>
+        body {
+            background-image: url('https://i.pinimg.com/originals/f2/bf/43/f2bf432e3a5c7b14a2c97451e7c6c50f.gif');
+            background-size: cover;
+            color: white;
+            font-family: Arial, sans-serif;
+        }
+        .filter-container {
+            margin: 20px;
+        }
+        .filter-toggle {
+            cursor: pointer;
+            font-size: 24px;
+        }
+        .filter-options {
+            display: none;
+            margin-top: 10px;
+        }
+        .filter-options label {
+            margin-right: 10px;
+        }
+        .options {
+            margin-top: 20px;
+        }
+        .option {
+            display: none;
+            padding: 10px;
+            background-color: rgba(0, 0, 0, 0.5);
+            margin-bottom: 10px;
+            border-radius: 5px;
+        }
+    </style>
 </head>
 <body>
-<div id="header">
-  <a href="/" id="xandy-api">xandy-api</a>
-  <div id="filter-toggle" onclick="toggleFilter()">filtrar &#9776;</div>
-</div>
-<div id="filter">
-  <label><input type="checkbox" name="verificacao"> verificação</label>
-  <label><input type="checkbox" name="basicos"> básicos</label>
-  <label><input type="checkbox" name="antis"> antis</label>
-  <label><input type="checkbox" name="adm"> adm</label>
-  <label><input type="checkbox" name="brincadeiras"> brincadeiras</label>
-  <label><input type="checkbox" name="membros"> membros</label>
-</div>
-<div id="options">
-  <p onclick="toggleOptions('ppt')">ppt</p>
-  <p onclick="toggleOptions('antilink')">antilink</p>
-  <p onclick="toggleOptions('mensagem')">mensagem de texto</p>
-  <p onclick="toggleOptions('ban')">ban</p>
-</div>
-<script>
-  function toggleFilter() {
-    var filter = document.getElementById("filter");
-    if (filter.style.display === "block") {
-      filter.style.animation = "slideUp 0.5s ease forwards";
-      setTimeout(function() {
-        filter.style.display = "none";
-      }, 500);
-    } else {
-      filter.style.display = "block";
-      filter.style.animation = "slideDown 0.5s ease forwards";
-    }
-  }
-  
-  function toggleOptions(option) {
-    var checkboxes = document.querySelectorAll('input[type="checkbox"]');
-    for (var i = 0; i < checkboxes.length; i++) {
-      checkboxes[i].checked = false;
-    }
-    switch (option) {
-      case 'ppt':
-        document.querySelector('input[name="brincadeiras"]').checked = true;
-        document.querySelector('input[name="membros"]').checked = true;
-        break;
-      case 'antilink':
-        document.querySelector('input[name="antis"]').checked = true;
-        document.querySelector('input[name="adm"]').checked = true;
-        break;
-      case 'mensagem':
-        document.querySelector('input[name="basicos"]').checked = true;
-        document.querySelector('input[name="membros"]').checked = true;
-        break;
-      case 'ban':
-        document.querySelector('input[name="adm"]').checked = true;
-        break;
-      default:
-        break;
-    }
-    // Filtrar os itens
-    var items = document.querySelectorAll('#filter label');
-    for (var i = 0; i < items.length; i++) {
-      var checkbox = items[i].querySelector('input[type="checkbox"]');
-      if (checkbox.checked) {
-        items[i].style.display = 'block';
-      } else {
-        items[i].style.display = 'none';
-      }
-    }
-  }
-</script>
+    <div class="filter-container">
+        <span class="filter-toggle">&#9776; Filtrar</span>
+        <div class="filter-options">
+            <label><input type="checkbox" class="filter-checkbox" value="adm"> ADM</label>
+            <label><input type="checkbox" class="filter-checkbox" value="membros"> Membros</label>
+            <label><input type="checkbox" class="filter-checkbox" value="sistema"> Sistema</label>
+            <label><input type="checkbox" class="filter-checkbox" value="brincadeiras"> Brincadeiras</label>
+        </div>
+    </div>
+    <div class="options">
+        <div class="option play" data-category="membros sistema">Play (Membros, Sistema)</div>
+        <div class="option ppt" data-category="brincadeiras membros">PPT (Brincadeiras, Membros)</div>
+        <div class="option ban" data-category="adm">Ban (ADM)</div>
+    </div>
+    
+    <script>
+        document.querySelector('.filter-toggle').addEventListener('click', function() {
+            const filterOptions = document.querySelector('.filter-options');
+            filterOptions.style.display = filterOptions.style.display === 'block' ? 'none' : 'block';
+        });
+
+        document.querySelectorAll('.filter-checkbox').forEach(function(checkbox) {
+            checkbox.addEventListener('change', function() {
+                filterOptions();
+            });
+        });
+
+        function filterOptions() {
+            const checkboxes = document.querySelectorAll('.filter-checkbox');
+            const options = document.querySelectorAll('.option');
+            let activeFilters = [];
+
+            checkboxes.forEach(function(checkbox) {
+                if (checkbox.checked) {
+                    activeFilters.push(checkbox.value);
+                }
+            });
+
+            options.forEach(function(option) {
+                let categories = option.getAttribute('data-category').split(' ');
+                let isVisible = activeFilters.some(filter => categories.includes(filter));
+
+                if (isVisible) {
+                    option.style.display = 'block';
+                } else {
+                    option.style.display = 'none';
+                }
+            });
+        }
+
+        // Inicialização para exibir todas as opções no carregamento
+        document.addEventListener('DOMContentLoaded', function() {
+            filterOptions();
+        });
+    </script>
 </body>
 </html>
