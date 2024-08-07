@@ -36,9 +36,6 @@ router.get('/home', async (req, res) => {
 	res.sendFile(__dirname + '/home.html')
 })
 
-router.get('/comandos', async (req, res) =>{
-	res.sendFile(__dirname + '/comandos.html')
-})
 
 router.get('/attp', async (req, res, next) => {
 const text = req.query.text
