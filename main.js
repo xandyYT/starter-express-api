@@ -7,22 +7,9 @@ const fs = require('fs')
 const axios = require('axios')
 const cheerio = require('cheerio')
 const g = require('assemblyai')
-const fetch = require('node-fetch')
 
-async function getJson(url) {
-  he = await fetch(url).then(c => c.json())
-   return he
-}
-
-async function getBuffer(url) {
-  he = await fetch(url).then(c => c.buffer())
-   return he
-}
-
-    const apikey = JSON.parse(fs.readFileSync(__dirname + '/registros.json'))
-const esperar = async (tempo) => {
-    return new Promise(funcao => setTimeout(funcao, tempo));
-}
+const k = './registros.json'
+const apikey = JSON.parse(fs.readFileSync(k, "utf-8"))
 
 router.get('/start-sh', async (req, res) => {
            res.sendFile(__dirname + '/dostart.html')
@@ -38,13 +25,9 @@ router.get('/home', async (req, res) => {
 
 
 router.get('/attp', async (req, res, next) => {
-const text = req.query.text
-	const gifBuffer = await getBuffer(`https://aemt.me/attp?text=${text}`)
-    res.send(gifBuffer)
 })
 
 router.get('/meufilme', async (req, res)=>{
-  res.sendFile(__dirname + '/views/ITACOS.mp4')
 })
 router.get('/register', async (req, res) => {
 
