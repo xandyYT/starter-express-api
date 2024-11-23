@@ -2,10 +2,8 @@ __path = process.cwd()
 const express = require("express")
 const router = express.Router();
 const ytSearch = require('yt-search');
-const yt = require('ytdl-core')
 const fs = require('fs')
 const axios = require('axios')
-const cheerio = require('cheerio')
 const g = require('assemblyai')
 
 const k = './registros.json'
